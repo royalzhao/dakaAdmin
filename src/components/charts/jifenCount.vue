@@ -6,6 +6,7 @@
 
 <script>
     import IEcharts from 'vue-echarts-v3';
+    import { usersByMonth } from '@/api/getData'
     export default {
         components:{
             IEcharts
@@ -60,18 +61,11 @@
                     ],
                     series : [
                         {
-                            name:'浏览次数',
+                            name:'报名人数',
                             type:'line',
                             smooth:true,
                             itemStyle: {normal: {areaStyle: {type: 'default'}}},
                             data:this.see
-                        },
-                        {
-                            name:'IP数',
-                            type:'line',
-                            smooth:true,
-                            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                            data:this.ip
                         }
                     ]
                 }
@@ -79,23 +73,22 @@
         },
         methods: {
             searchJifenCount(){
-                this.$post('http://www.bjytzh.cn/jxc/zdtjQuery.thtml').then(res => {
-                    
-                    var date = [];
-                    var see = [];
-                    var ip = [];
-                    for(var i in res[0]){
-                        date.push(res[0][i].day)
-                        see.push(res[0][i].count)
-                    }
-                    for(var i in res[1]){
-                        ip.push(res[1][i].countIP)
-                    }
-                   
-                    this.date = date
-                    this.see = see
-                    this.ip = ip
-                });
+                usersByMonth()
+                    .then(response => {
+                        console.log(response)
+                        var date = [];
+                        var see = [];
+                        for(var i in response){
+                            date.push(response[i].month)
+                            see.push(response[i].count)
+                        }
+                        
+                        this.date = date
+                        this.see = see
+                        
+                    })
+              
+             
             }
         }
     }

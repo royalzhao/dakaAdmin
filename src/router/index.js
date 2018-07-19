@@ -10,6 +10,8 @@ import userList from '@/components/page/userList'
 import activitySetting from '@/components/page/activitySetting'
 import tradingRecord from '@/components/page/tradingRecord'
 import messageList from '@/components/page/messageList'
+import addActivity from '@/components/form/addActivity'
+import updateActivity from '@/components/form/updateActivity'
 
 Vue.use(Router)
 
@@ -44,6 +46,14 @@ const routes = [
       {
         path:'/messageList',
         component:messageList
+      },
+      {
+        path:'/addActivity',
+        component:addActivity
+      },
+      {
+        path:'/updateActivity',
+        component:updateActivity
       },
       
     ]

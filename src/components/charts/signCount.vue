@@ -7,6 +7,7 @@
 <script>
     import IEcharts from 'vue-echarts-v3';
     import 'echarts/theme/macarons.js'
+    import { signInByDay } from '@/api/getData'
     export default {
         components:{
             IEcharts
@@ -60,7 +61,7 @@
                     ],
                     series : [
                         {
-                            name:'签到人数',
+                            name:'打卡人数',
                             type:'line',
                             stack: '总量',
                             data:this.count
@@ -71,19 +72,20 @@
         },
         methods: {
             searchSignCount(){
-                this.$fetch('http://www.bjytzh.cn/jxc/signCountQuery.thtml').then(res => {
-                    
-                    var date = [];
-                    var count = [];
-                    for(var i in res){
-                        date.push(res[i].day)
-                        count.push(res[i].count)
-                    }
-                    
-                    this.date = date
-                    this.count = count
-                    
-                });
+                signInByDay()
+                    .then(response => {
+                        var date = [];
+                        var count = [];
+                        for(var i in response){
+                            date.push(response[i].day)
+                            count.push(response[i].count)
+                        }
+                        
+                        this.date = date
+                        this.count = count
+                       // console.log(response)
+                    })
+              
             },
             
         }
