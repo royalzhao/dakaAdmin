@@ -112,3 +112,60 @@ export function updateActivity (data){
         })
     })
 }
+
+// 查询所有留言
+export function showAllLeavWord (data){
+    return new Promise((resolve,reject)=>{
+        post(baseUrl+'/showAllLeavWord',data).then(response=>{
+            //console.log(response)
+            resolve(response)
+
+        })
+        .catch(error => {
+            reject(error)
+        })
+    })
+}
+
+// 改变留言状态
+export function choiceLeavWords (data){
+    return new Promise((resolve,reject)=>{
+        post(baseUrl+'/choiceLeavWords',data).then(response=>{
+            //console.log(response)
+            resolve(response)
+
+        })
+        .catch(error => {
+            reject(error)
+        })
+    })
+}
+
+// 删除留言
+export function deleteLeavWord (data){
+    return new Promise((resolve,reject)=>{
+        post(baseUrl+'/deleteLeavWord?uuid='+data).then(response=>{
+            //console.log(response)
+            resolve(response)
+
+        })
+        .catch(error => {
+            reject(error)
+        })
+    })
+}
+
+// 删除留言
+export function showRecordList (data){
+    return new Promise((resolve,reject)=>{
+        post(baseUrl+'/showRecordList',data).then(response=>{
+            //console.log(response)
+            resolve(response)
+
+        })
+        .catch(error => {
+            reject(error)
+        })
+    })
+}
+

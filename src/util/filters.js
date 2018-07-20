@@ -41,7 +41,7 @@ Vue.filter('txtSub',function(txt,num = 10) {
  */
 Vue.filter('formatDate',function(value,type = 1) {
   if(value != '' && value != undefined && value != null) {
-    var date = new Date(value);
+    var date = new Date(Number(value));
     var Y = date.getFullYear();
     var m = date.getMonth() + 1;
     var d = date.getDate();
